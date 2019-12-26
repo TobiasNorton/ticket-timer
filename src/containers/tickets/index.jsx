@@ -4,6 +4,10 @@ import './style.scss'
 import NewTimer from '../../components/new-timer'
 
 const Tickets = () => {
+  // const createNewTimer = values => {
+  //   return <TimerItem number={values.number} description={values.description} />
+  // }
+
   return (
     <div className="tickets-page">
       <div className="tickets-container">
@@ -12,7 +16,7 @@ const Tickets = () => {
         <TimerItem />
         <TimerItem />
         <TimerItem />
-        <NewTimer />
+        <NewTimer createNewTimer={''} />
       </div>
     </div>
   )

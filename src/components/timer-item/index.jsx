@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './style.scss'
 
-const TimerItem = () => {
+const TimerItem = ({ number, description }) => {
+  const [isTracking, setIsTracking] = useState(false)
+  const toggleTimer = () => {
+    setIsTracking(!isTracking)
+  }
+
   return (
     <div className={'timer-item'}>
-      <h3>REIT-430</h3>
-      <p>Brief description about the ticket</p>
+      <h3>{number}</h3>
+      <p>{description}</p>
       <p>4 hours, 34 minutes</p>
-      <button>Stop</button>
+      <button className={isTracking ? 'tracking' : 'not-tracking'} onClick={toggleTimer}>
+        {isTracking ? 'Stop' : 'Start'}
+      </button>
     </div>
   )
 }
