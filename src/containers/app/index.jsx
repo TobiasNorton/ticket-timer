@@ -1,19 +1,17 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.scss'
-import Tickets from '../tickets'
-import TimerItem from '../../components/timer-item'
+// import AppRouter from '../../router'
 import NavigationMenu from '../../components/navigation-menu'
+import Tickets from '../../containers/tickets'
 
 function App() {
   return (
-    <div className="App">
+    <div className="app-container">
+      {/* <AppRouter /> */}
       <NavigationMenu />
       <Router>
-        <div>
-          <Route exact path="/" component={Tickets} />
-          {/* <Route path="/archives" component={Archives} /> */}
-        </div>
+        <Route exact path="/" component={Tickets} />
       </Router>
     </div>
   )

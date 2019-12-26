@@ -1,16 +1,21 @@
 import React from 'react'
 import TimerItem from '../../components/timer-item'
+import './style.scss'
+import NewTimer from '../../components/new-timer'
 
-const index = () => {
+const Tickets = () => {
   return (
-    <div>
-      <TimerItem />
-      <TimerItem />
-      <TimerItem />
-      <TimerItem />
-      <TimerItem />
+    <div className="tickets-page">
+      <div className="tickets-container">
+        <TimerItem />
+        <TimerItem />
+        <TimerItem />
+        <TimerItem />
+        <TimerItem />
+        <NewTimer />
+      </div>
     </div>
   )
 }
 
-export default index
+export default Tickets

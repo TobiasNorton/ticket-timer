@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-
+import './style.scss'
 const NavigationMenu = () => {
   return (
-    <div>
-      <h1>ticketTimer</h1>
+    <div className={'navigation-menu'}>
+      <h1>ticketTimer()</h1>
       <p>Tickets</p>
       <p>Archives</p>
     </div>
