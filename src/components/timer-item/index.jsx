@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './style.scss'
 
-const TimerItem = ({ number, description }) => {
+const TimerItem = ({ id, number, description }) => {
   const [isTracking, setIsTracking] = useState(false)
   const toggleTimer = () => {
     setIsTracking(!isTracking)

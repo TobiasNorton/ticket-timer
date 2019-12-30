@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.scss'
 // import AppRouter from '../../router'
 import NavigationMenu from '../../components/navigation-menu'
-import Tickets from '../../containers/tickets'
+import Timers from '../../containers/timers'
+import firebase from '../../firebase'
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       {/* <AppRouter /> */}
       <NavigationMenu />
       <Router>
-        <Route exact path="/" component={Tickets} />
+        <Route exact path="/" component={Timers} />
       </Router>
     </div>
   )

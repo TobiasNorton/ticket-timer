@@ -3,16 +3,16 @@ import { Formik, Form, Field } from 'formik'
 import './style.scss'
 
 const NewTimer = ({ createNewTimer }) => {
-  const onSubmit = (values, { setStatus, setSubmitting }) => {
+  const onSubmit = async (values, { setStatus, setSubmitting }) => {
     // try {
     //   await createNewTimer(values)
-    //   setStatus({success: true})
+    //   setStatus({ success: true })
     // } catch (error) {
-    //   setStatus({error: error.message})
+    //   setStatus({ error: error.message })
     // } finally {
     //   setSubmitting(false)
     // }
-    // createNewTimer(values)
+    createNewTimer(values)
     console.log('onSubmit', values)
   }
 
