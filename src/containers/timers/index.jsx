@@ -6,20 +6,9 @@ import firebase from '../../firebase'
 
 const Timers = () => {
   const [timers, setTimers] = useState([])
-  // const createNewTimer = values => {
-  //   const { number, description } = values
-  //   firebase
-  //     .firestore()
-  //     .collection('timers')
-  //     .add({
-  //       number,
-  //       description
-  //     })
-  //     .then(response => console.log('response', response))
-  // }
 
   useEffect(() => {
-    firebase
+    const unsubscribe = firebase
       .firestore()
       .collection('timers')
       .onSnapshot(snapshot => {
@@ -31,7 +20,34 @@ const Timers = () => {
         })
         setTimers(data)
       })
+    return () => unsubscribe()
   }, [])
+
+  // TODO: Abstract to hooks file
+  const createTimer = values => {
+    const { number, description } = values
+    firebase
+      .firestore()
+      .collection('timers')
+      .add({
+        number,
+        description
+      })
+  }
+
+  const deleteTimer = id => {
+    firebase
+      .firestore()
+      .collection('timers')
+      .doc(id)
+      .delete()
+      .then(function() {
+        console.log('Document successfully deleted!')
+      })
+      .catch(function(error) {
+        console.error('Error removing document: ', error)
+      })
+  }
 
   return (
     <div className="tickets-page">
@@ -39,9 +55,17 @@ const Timers = () => {
         {timers &&
           timers.map(timer => {
             const { id, number, description } = timer
-            return <TimerItem key={id} number={number} description={description} />
+            return (
+              <TimerItem
+                id={id}
+                key={id}
+                number={number}
+                description={description}
+                deleteTimer={deleteTimer}
+              />
+            )
           })}
-        <NewTimer createNewTimer={''} />
+        <NewTimer createTimer={createTimer} />
       </div>
     </div>
   )

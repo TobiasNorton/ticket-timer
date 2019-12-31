@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import classnames from 'classnames'
 import './style.scss'
 
-const TimerItem = ({ id, number, description }) => {
+const TimerItem = ({ id, number, description, deleteTimer }) => {
   const [isTracking, setIsTracking] = useState(false)
   const toggleTimer = () => {
     setIsTracking(!isTracking)
@@ -12,9 +13,14 @@ const TimerItem = ({ id, number, description }) => {
       <h3>{number}</h3>
       <p>{description}</p>
       <p>4 hours, 34 minutes</p>
-      <button className={isTracking ? 'tracking' : 'not-tracking'} onClick={toggleTimer}>
+      <button
+        className={classnames('track-btn', { tracking: isTracking, 'not-tracking': !isTracking })}
+        onClick={toggleTimer}
+      >
         {isTracking ? 'Stop' : 'Start'}
       </button>
+      <button>Edit</button>
+      <button onClick={() => deleteTimer(id)}>Delete</button>
     </div>
   )
 }

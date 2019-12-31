@@ -2,33 +2,35 @@ import React from 'react'
 import { Formik, Form, Field } from 'formik'
 import './style.scss'
 
-const NewTimer = ({ createNewTimer }) => {
-  const onSubmit = async (values, { setStatus, setSubmitting }) => {
-    // try {
-    //   await createNewTimer(values)
-    //   setStatus({ success: true })
-    // } catch (error) {
-    //   setStatus({ error: error.message })
-    // } finally {
-    //   setSubmitting(false)
-    // }
-    createNewTimer(values)
+const NewTimer = ({ createTimer }) => {
+  const onSubmit = async (values, { status, setStatus, setSubmitting }) => {
     console.log('onSubmit', values)
+    try {
+      await createTimer(values)
+      setStatus({ success: true })
+    } catch (error) {
+      setStatus({ error: error.message })
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
     <div className={'new-timer'}>
       <h3>Create a New Timer</h3>
       <Formik initialValues={{ number: '', description: '' }} onSubmit={onSubmit}>
-        {({ values, isSubmitting }) => (
-          <Form>
-            <Field type="text" name="number"></Field>
-            <Field type="text" name="description"></Field>
-            <button type="submit" disabled={isSubmitting}>
-              Create
-            </button>
-          </Form>
-        )}
+        {({ values, status, isSubmitting }) => {
+          return (
+            <Form>
+              <Field type="text" name="number"></Field>
+              <Field type="text" name="description"></Field>
+              <button type="submit" disabled={isSubmitting}>
+                Create
+              </button>
+              {status && status.error ? <p>{status.error}</p> : null}
+            </Form>
+          )
+        }}
       </Formik>
     </div>
   )

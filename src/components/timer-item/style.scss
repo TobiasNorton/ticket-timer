@@ -12,6 +12,10 @@
     border: none;
   }
 
+  button:hover {
+    cursor: pointer;
+  }
+
   .tracking {
     background-color: hsla(7, 88%, 63%, 1);
   }
