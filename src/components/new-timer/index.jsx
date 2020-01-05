@@ -3,11 +3,12 @@ import { Formik, Form, Field } from 'formik'
 import './style.scss'
 
 const NewTimer = ({ createTimer }) => {
-  const onSubmit = async (values, { status, setStatus, setSubmitting }) => {
+  const onSubmit = async (values, { setStatus, setSubmitting, resetForm }) => {
     console.log('onSubmit', values)
     try {
       await createTimer(values)
       setStatus({ success: true })
+      resetForm({})
     } catch (error) {
       setStatus({ error: error.message })
     } finally {
@@ -19,7 +20,7 @@ const NewTimer = ({ createTimer }) => {
     <div className={'new-timer'}>
       <h3>Create a New Timer</h3>
       <Formik initialValues={{ number: '', description: '' }} onSubmit={onSubmit}>
-        {({ values, status, isSubmitting }) => {
+        {({ status, isSubmitting }) => {
           return (
             <Form>
               <Field type="text" name="number"></Field>

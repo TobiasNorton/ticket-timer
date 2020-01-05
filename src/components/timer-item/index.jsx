@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import './style.scss'
 
-const TimerItem = ({ id, number, description, deleteTimer }) => {
+const TimerItem = ({ id, ticketNumber, description, deleteTimer }) => {
   const [isTracking, setIsTracking] = useState(false)
   const toggleTimer = () => {
     setIsTracking(!isTracking)
@@ -10,7 +10,7 @@ const TimerItem = ({ id, number, description, deleteTimer }) => {
 
   return (
     <div className={'timer-item'}>
-      <h3>{number}</h3>
+      <h3>{ticketNumber}</h3>
       <p>{description}</p>
       <p>4 hours, 34 minutes</p>
       <button

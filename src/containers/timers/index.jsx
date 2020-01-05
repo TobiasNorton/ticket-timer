@@ -35,31 +35,28 @@ const Timers = () => {
       })
   }
 
+  // TODO: Abstract to hooks file
   const deleteTimer = id => {
     firebase
       .firestore()
       .collection('timers')
       .doc(id)
       .delete()
-      .then(function() {
-        console.log('Document successfully deleted!')
-      })
-      .catch(function(error) {
-        console.error('Error removing document: ', error)
-      })
+      .then(() => console.log('Document successfully deleted!'))
+      .catch(error => console.error('Error removing document: ', error))
   }
 
   return (
     <div className="tickets-page">
       <div className="tickets-container">
         {timers &&
-          timers.map(timer => {
+          timers.map((timer, index) => {
             const { id, number, description } = timer
             return (
               <TimerItem
                 id={id}
-                key={id}
-                number={number}
+                key={`timer-${index}`}
+                ticketNumber={number}
                 description={description}
                 deleteTimer={deleteTimer}
               />
