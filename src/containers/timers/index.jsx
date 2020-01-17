@@ -8,7 +8,7 @@ const Timers = () => {
   const [timers, setTimers] = useState([])
 
   useEffect(() => {
-    const unsubscribe = firebase
+    const toggleSubscription = firebase
       .firestore()
       .collection('timers')
       .onSnapshot(snapshot => {
@@ -20,10 +20,9 @@ const Timers = () => {
         })
         setTimers(data)
       })
-    return () => unsubscribe()
+    return () => toggleSubscription()
   }, [])
 
-  // TODO: Abstract to hooks file
   const createTimer = values => {
     const { number, description } = values
     firebase
@@ -35,7 +34,6 @@ const Timers = () => {
       })
   }
 
-  // TODO: Abstract to hooks file
   const deleteTimer = id => {
     firebase
       .firestore()
