@@ -24,14 +24,11 @@ const Timers = () => {
   }, [])
 
   const createTimer = values => {
-    const { number, description } = values
+    const { number, description, hours, minutes, seconds } = values
     firebase
       .firestore()
       .collection('timers')
-      .add({
-        number,
-        description
-      })
+      .add({ number, description, hours, minutes, seconds })
   }
 
   const deleteTimer = id => {
@@ -40,8 +37,8 @@ const Timers = () => {
       .collection('timers')
       .doc(id)
       .delete()
-      .then(() => console.log('Document successfully deleted!'))
-      .catch(error => console.error('Error removing document: ', error))
+      .then(() => console.log('[TIMER SUCCESSFULLY DELETED]'))
+      .catch(error => console.error('[ERROR REMOVING DOCUMENT]', error))
   }
 
   return (
@@ -49,7 +46,7 @@ const Timers = () => {
       <div className="tickets-container">
         {timers &&
           timers.map((timer, index) => {
-            const { id, number, description } = timer
+            const { id, number, description, hours, minutes, seconds } = timer
             return (
               <TimerItem
                 id={id}
@@ -57,6 +54,9 @@ const Timers = () => {
                 ticketNumber={number}
                 description={description}
                 deleteTimer={deleteTimer}
+                hours={hours}
+                minutes={minutes}
+                seconds={seconds}
               />
             )
           })}

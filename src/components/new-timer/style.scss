@@ -15,4 +15,13 @@
     margin: 5px 0;
     font-size: 16px;
   }
+
+  .new-timer__time {
+    display: flex;
+
+    input {
+      width: 40px;
+      margin-right: 10px;
+    }
+  }
 }

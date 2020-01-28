@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import classnames from 'classnames'
 import './style.scss'
+
+// Thoughts:
+// We need to figure out a way to send the time in milliseconds, or maybe seconds
+// That way we can send that value to the Firestore in one value
+// From there milliseconds will be broken down into h, m and s as it is.
 
 const TimerItem = ({ id, ticketNumber, description, deleteTimer }) => {
   const [isActive, setIsActive] = useState(false)
